@@ -1,32 +1,79 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+  <div class="main-container">
+    <div class="img-container">
+      <img
+        class="img-logo-principal"
+        src="img/Login-Best-Pizza.png"
+        alt="img-logo"
+      />
+      <div class="img-superpuesta" alt="imagen-pizza"></div>
     </div>
-    <router-view/>
+
+    <div class="reactive-content">
+      <router-view />
+    </div>
   </div>
 </template>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+* {
+  margin: 0;
+  padding: 0;
 }
 
-#nav {
-  padding: 30px;
+.main-container {
+  display: flex;
+  min-height: 100vh;
+}
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+.reactive-content {
+  display: flex;
+  width: 55%;
+  justify-content: center;
+  margin: auto 0;
+  height: 100%;
+}
 
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+.img-container {
+  background-image: url("../public/img/imagebkg.png");
+  background-blend-mode: multiply;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 300px;
+  width: 45%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
+  height: auto;
+}
+
+.img-superpuesta {
+  background-image: url("../public/img/Pizza.png");
+  background-blend-mode: multiply;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  height: 100%;
+  width: 100%;
+}
+
+.img-logo-principal {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 6%;
+  margin: 3% 0 0 4%;
+}
+
+@media (max-width: 1024px) {
+  .img-container {
+    display: none;
+  }
+  .reactive-content {
+    width: 100%;
   }
 }
 </style>
