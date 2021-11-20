@@ -25,16 +25,24 @@
     </div>
   </div>
 </template>
-
-
 <script>
-export default {};
+import { mapActions, mapGetters } from "vuex";
+export default {
+  computed: {
+    ...mapGetters(["getUsers"]),
+  },
+  methods: {
+    ...mapActions(["getData"]),
+  },
+
+  async mounted() {
+    await this.getData();
+    console.log(this.getUsers);
+  },
+};
 </script>
 
 <style scoped>
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
-
 .login__container {
   overflow: hidden;
   width: 600px;
