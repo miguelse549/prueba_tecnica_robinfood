@@ -36,6 +36,8 @@ export default new Vuex.Store({
     },
 
     getStores(state) {
+
+
       return state.data.stores;
     }
 

@@ -24,13 +24,13 @@
 
         <h2 class="password">¿Olvidaste tu contraseña?</h2>
 
-        <button class="button" @click="login">Iniciar sesión</button>
+        <button class="button" @click.prevent="login">Iniciar sesión</button>
       </form>
     </div>
   </div>
 </template>
 <script>
-import { mapActions, mapGetters } from "vuex";
+import { mapGetters } from "vuex";
 export default {
   data() {
     return {
@@ -44,9 +44,9 @@ export default {
     ...mapGetters(["getUsers"]),
   },
   methods: {
-    ...mapActions(["getData"]),
-
     login() {
+
+
       for (let user of this.getUsers) {
         if (
           this.dataUser.email === user.email &&
@@ -60,11 +60,7 @@ export default {
   },
   created() {
     if (localStorage.getItem("isAutenticated"))
-      this.$router.push({ name: "Shops" });
-  },
-
-  async mounted() {
-    await this.getData();
+      this.$router.push("/shops");
   },
 };
 </script>

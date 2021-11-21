@@ -15,7 +15,17 @@
   </div>
 </template>
 
-
+<script>
+import { mapActions } from "vuex";
+export default {
+  methods: {
+    ...mapActions(["getData"]),
+  },
+  async mounted() {
+    await this.getData();
+  },
+};
+</script>
 
 <style lang="scss">
 * {
@@ -58,8 +68,9 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-  height: 100%;
-  width: 100%;
+  height: 80%;
+  width: 80%;
+  animation: zoom-in-zoom-out 2s ease-out infinite;
 }
 
 .img-logo-principal {
@@ -76,6 +87,18 @@
   }
   .reactive-content {
     width: 100%;
+  }
+}
+
+@keyframes zoom-in-zoom-out {
+  0% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(1.1, 1.1);
+  }
+  100% {
+    transform: scale(1, 1);
   }
 }
 </style>

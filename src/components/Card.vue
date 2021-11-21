@@ -34,7 +34,7 @@ export default {
 
   methods: {
     openModal() {
-      this.$emit('open')
+      this.$emit("open");
     },
   },
 };
@@ -63,5 +63,24 @@ export default {
 img {
   border: 2px solid #adadad;
   border-radius: 8px;
+}
+
+img:hover {
+  animation: cartel 1s 1;
+  transform-origin: top center;
+}
+@keyframes cartel {
+  20% {
+    transform: rotate(20deg);
+  }
+  40% {
+    transform: rotate(-15deg);
+  }
+  60% {
+    transform: rotate(10deg);
+  }
+  80% {
+    transform: rotate(-5deg);
+  }
 }
 </style>

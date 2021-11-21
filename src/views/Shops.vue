@@ -4,7 +4,9 @@
       <div class="modal">
         <div
           class="modal-header"
-          :style="{ 'background-image': 'url(' + image + ')' }"
+          :style="{
+            'background-image': `url(${dataModal.image})`,
+          }"
         ></div>
 
         <div class="modal-body">
@@ -43,6 +45,17 @@
 
     <div class="container">
       <Header />
+
+      <div class="search">
+        <i class="fas fa-search"></i>
+        <input
+          placeholder="Buscar tienda"
+          v-model="search"
+          class="input-search"
+          type="text"
+        />
+      </div>
+
       <div class="description">
         <h2>Tiendas</h2>
         <p>Escoge tu Pizzería favorita</p>
@@ -50,11 +63,12 @@
 
       <div class="cards-container">
         <Card
-          v-for="(store, index) of getStores"
+          v-for="(store, index) of stores"
           :key="index"
           :name="store.name"
           :location="store.address"
           :id="store.id"
+          :image="`../../img/shops/${index}.png`"
           @open="showInfo(store)"
         />
       </div>
@@ -71,18 +85,29 @@
 import Footer from "@/components/Footer.vue";
 import Header from "@/components/Header.vue";
 import Card from "@/components/Card.vue";
-import { mapGetters } from "vuex";
+//import { mapGetters } from "vuex";
 export default {
   data() {
     return {
       dataModal: {},
       resizeModal: {},
-      image: "'https://dummyimage.com/600x400/000/fff'",
+      search: "",
     };
   },
 
   computed: {
-    ...mapGetters(["getStores"]),
+    //...mapGetters(["getStores"]),
+    stores() {
+      const stores = this.$store.getters.getStores;
+
+      if (this.search !== "") {
+        console.log("entro");
+        return stores.filter((value) =>
+          value.name.toLowerCase().includes(this.search.toLowerCase().trim())
+        );
+      }
+      return stores;
+    },
   },
   components: {
     Footer,
@@ -92,6 +117,7 @@ export default {
   methods: {
     showInfo(store) {
       this.dataModal = store;
+      this.dataModal.image = `../../img/dishes/${this.dataModal.id - 1}.png`;
       this.$modal.show("modalInfo");
     },
   },
@@ -183,6 +209,26 @@ button {
   border: none;
   cursor: pointer;
   margin-bottom: 20px;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  width: 250px;
+  height: 30px;
+  border: 1px solid #999999;
+}
+.input-search {
+  border: none;
+  outline: none;
+  font-size: 14px;
+}
+input::placeholder {
+  color: #adadad;
+  font-family: "Open Sans", sans-serif;
 }
 
 @media (max-width: 600px) {
