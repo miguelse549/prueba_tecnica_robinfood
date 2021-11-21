@@ -43,9 +43,8 @@
       </div>
     </modal>
 
+    <Header />
     <div class="container">
-      <Header />
-
       <div class="search">
         <i class="fas fa-search"></i>
         <input
@@ -130,7 +129,8 @@ export default {
 
 <style>
 .container {
-  width: 100%;
+  width: calc(100vw - 45vw);
+  height: calc(100vh - 200px);
   padding: 0 5%;
 }
 
@@ -144,8 +144,9 @@ export default {
   margin-bottom: 30px;
 }
 .cards-container {
-  max-height: calc(100vh - 350px);
+  height: calc(100vh - 350px);
   overflow-y: scroll;
+  overflow-x: hidden;
   display: flex;
   flex-wrap: wrap;
   gap: 40px;
@@ -229,6 +230,12 @@ button {
 input::placeholder {
   color: #adadad;
   font-family: "Open Sans", sans-serif;
+}
+
+@media (max-width: 1024px) {
+  .container {
+    width: 90vw;
+  }
 }
 
 @media (max-width: 600px) {
