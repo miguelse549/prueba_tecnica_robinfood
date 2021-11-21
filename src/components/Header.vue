@@ -1,8 +1,10 @@
 <template>
   <header>
-    <div class="logout">
-      <img class="icon-lock" src="padlock.png" alt="" />
-      <span>Salir</span>
+    <div class="container-logout">
+      <div class="logout" @click="logout">
+        <img class="icon-lock" src="padlock.png" alt="icon-logout" />
+        <span>Salir</span>
+      </div>
     </div>
     <div class="tabs">
       <div class="item-tab"><p>Pizzerías</p></div>
@@ -11,7 +13,14 @@
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    logout() {
+      localStorage.removeItem("isAutenticated");
+      this.$router.push({ name: "Login" });
+    },
+  },
+};
 </script>
 
 <style scoped>
@@ -22,14 +31,17 @@ header {
   width: 55%;
   padding: 0 3%;
 }
+.container-logout {
+  display: flex;
+  justify-content: flex-end;
+}
 .logout {
-  cursor: pointer;
+  width: 80px;
   height: 50px;
-  width: 100%;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
   padding-right: 20px;
+  cursor: pointer;
 }
 .icon-lock {
   width: 30px;
@@ -54,5 +66,11 @@ p {
 .item-tab {
   border-bottom: 4px solid #f9c444;
   cursor: pointer;
+}
+
+@media (max-width: 1024px) {
+  header {
+    width: 100%;
+  }
 }
 </style>

@@ -9,18 +9,22 @@
 
       <form class="login__container--body">
         <div class="user-input">
-          <input placeholder="Usuario" type="text" />
+          <input v-model="dataUser.email" placeholder="Usuario" type="text" />
           <img src="img/ic_usuario.png" alt="icon-user" />
         </div>
 
         <div class="user-password">
-          <input placeholder="Contraseña" type="text" />
+          <input
+            v-model="dataUser.password"
+            placeholder="Contraseña"
+            type="password"
+          />
           <img src="img/ic_contrase§a.png" alt="icon-password" />
         </div>
 
         <h2 class="password">¿Olvidaste tu contraseña?</h2>
 
-        <button class="button">Iniciar sesión</button>
+        <button class="button" @click="login">Iniciar sesión</button>
       </form>
     </div>
   </div>
@@ -28,16 +32,39 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
 export default {
+  data() {
+    return {
+      dataUser: {
+        email: "pperez@perez.com",
+        password: "pperezs123",
+      },
+    };
+  },
   computed: {
     ...mapGetters(["getUsers"]),
   },
   methods: {
     ...mapActions(["getData"]),
+
+    login() {
+      for (let user of this.getUsers) {
+        if (
+          this.dataUser.email === user.email &&
+          this.dataUser.password === user.password
+        ) {
+          localStorage.setItem("isAutenticated", true);
+          this.$router.push({ name: "Shops" });
+        }
+      }
+    },
+  },
+  created() {
+    if (localStorage.getItem("isAutenticated"))
+      this.$router.push({ name: "Shops" });
   },
 
   async mounted() {
     await this.getData();
-    console.log(this.getUsers);
   },
 };
 </script>

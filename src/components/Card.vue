@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div class="card" @click="openModal">
     <div class="header">
       <img :src="image" alt="" />
     </div>
@@ -29,6 +29,12 @@ export default {
     id: {
       required: true,
       type: Number,
+    },
+  },
+
+  methods: {
+    openModal() {
+      this.$emit('open')
     },
   },
 };
