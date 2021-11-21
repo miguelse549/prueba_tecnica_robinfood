@@ -95,12 +95,10 @@ export default {
   },
 
   computed: {
-    //...mapGetters(["getStores"]),
     stores() {
       const stores = this.$store.getters.getStores;
 
       if (this.search !== "") {
-        console.log("entro");
         return stores.filter((value) =>
           value.name.toLowerCase().includes(this.search.toLowerCase().trim())
         );

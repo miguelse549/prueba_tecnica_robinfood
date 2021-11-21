@@ -35,8 +35,8 @@ export default {
   data() {
     return {
       dataUser: {
-        email: "pperez@perez.com",
-        password: "pperezs123",
+        email: "",
+        password: "",
       },
     };
   },
@@ -45,22 +45,22 @@ export default {
   },
   methods: {
     login() {
-
-
       for (let user of this.getUsers) {
         if (
           this.dataUser.email === user.email &&
           this.dataUser.password === user.password
         ) {
           localStorage.setItem("isAutenticated", true);
-          this.$router.push({ name: "Shops" });
+          this.$router.push("/shops");
         }
       }
+
+      !localStorage.getItem("isAutenticated") &&
+        this.$toast.error("Usuario o contraseña incorrectos");
     },
   },
   created() {
-    if (localStorage.getItem("isAutenticated"))
-      this.$router.push("/shops");
+    if (localStorage.getItem("isAutenticated")) this.$router.push("/shops");
   },
 };
 </script>

@@ -16,8 +16,8 @@
 export default {
   methods: {
     logout() {
+      this.$router.push("/");
       localStorage.removeItem("isAutenticated");
-      this.$router.push({ name: "Login" });
     },
   },
 };

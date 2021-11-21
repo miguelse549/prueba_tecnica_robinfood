@@ -1,10 +1,16 @@
 <template>
   <footer>
     <div class="social-buttons">
-      <i class="fab fa-facebook-square"></i>
-      <i class="fab fa-instagram"></i>
+      <a href="https://www.facebook.com/robinfood.Col">
+        <i class="fab fa-facebook-square"></i>
+      </a>
+
+      <a href="https://www.instagram.com/robinfoodcol/">
+        <i class="fab fa-instagram"></i>
+      </a>
     </div>
-    <img src="img/Best Pizza.png" alt="" />
+
+    <img class="img" src="img/Best Pizza.png" alt="logo" />
   </footer>
 </template>
 
@@ -27,7 +33,7 @@ footer {
   justify-content: space-between;
 }
 
-img {
+.img {
   height: 60%;
 }
 
