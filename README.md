@@ -9,6 +9,7 @@ Se dejó la imagen de fondo en la vista principal de la aplicación ya que es co
 -Librerias usadas 
 
 npm install --save vue-toastification
+
 npm install vue-js-modal --save
 
 -Link de la aplicación desplegada 
