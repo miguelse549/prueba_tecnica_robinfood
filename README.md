@@ -7,6 +7,7 @@ Para el diseño de la interfaz gráfica se utilizó vanilla CSS, la interfaz gr�
 Se dejó la imagen de fondo en la vista principal de la aplicación ya que es común para las dos vistas que se debían desarrollar y la parte que se comportaba como reactiva es la del Login y los productos.
 
 -Librerias usadas 
+
 npm install --save vue-toastification
 npm install vue-js-modal --save
 
